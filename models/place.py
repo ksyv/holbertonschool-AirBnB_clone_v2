@@ -9,7 +9,7 @@ import os
 import models
 
 
-association_table = Table("place_amenity", Base.metadata,
+place_amenity = Table("place_amenity", Base.metadata,
                           Column("place_id", String(60),
                                  ForeignKey("places.id"),
                                  primary_key=True, nullable=False),
@@ -56,7 +56,7 @@ class Place(BaseModel, Base):
     longitude = Column(Float, nullable=False)
     amenity_ids = []
 
-    reviews = relationship("Review", backref="place", cascade="delete")
+    reviews = relationship("Review", backref="state", cascade="all, delete, delete-orphan")
     amenities = relationship("Amenity", secondary="place_amenity",
                              viewonly=False)
 

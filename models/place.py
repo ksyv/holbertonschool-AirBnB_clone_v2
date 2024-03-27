@@ -62,23 +62,20 @@ class Place(BaseModel, Base):
 
         @property
         def reviews(self):
-            """Return a list of all linked Reviews."""
-            review_list = []
-            for review in list(models.storage.all(Review).values()):
-                if review.place_id == self.id:
-                    review_list.append(review)
-            return review_list
+            """ Getter that that returns the list of Reviews instances """
+            instances = models.storage.all(Review)
+            new = []
+            for review in instances.values():
+                if review.place_id == (self.id):
+                    new.append(review)
+            return new
 
-        @property
-        def amenities(self):
-            """Get/set linked Amenities."""
-            amenity_list = []
-            for amenity in list(models.storage.all(Amenity).values()):
-                if amenity.id in self.amenity_ids:
-                    amenity_list.append(amenity)
-            return amenity_list
-
-        @amenities.setter
-        def amenities(self, value):
-            if type(value) is Amenity:
-                self.amenity_ids.append(value.id)
+        @reviews.setter
+        def amenities(self, obj):
+            """
+            Setter attribute amenities that handles append method
+            for adding an Amenity.id to the attribute amenity_ids.
+            """
+            from models.amenity import Amenity
+            if isinstance(obj, Amenity):
+                self.amenity_ids.append(obj.id)

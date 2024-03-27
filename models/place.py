@@ -8,6 +8,7 @@ from sqlalchemy import Column, String, ForeignKey
 from models.review import Review
 import models
 from os import getenv
+from models.amenity import Amenity
 
 place_amenity = Table('place_amenity', Base.metadata,
     Column('place_id', String(60), ForeignKey('places.id'), primary_key=True, nullable=False),
@@ -53,6 +54,5 @@ class Place(BaseModel, Base):
         Setter attribute amenities that handles append method
         for adding an Amenity.id to the attribute amenity_ids.
         """
-        from models.amenity import Amenity
         if isinstance(obj, Amenity):
-            self.amenity_ids.append(obj.id)
+            self.amenities.append(obj)

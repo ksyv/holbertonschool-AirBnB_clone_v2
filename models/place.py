@@ -7,7 +7,6 @@ from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
 import os
 import models
-from models.review import Review
 
 
 association_table = Table("place_amenity", Base.metadata,
@@ -17,6 +16,7 @@ association_table = Table("place_amenity", Base.metadata,
                           Column("amenity_id", String(60),
                                  ForeignKey("amenities.id"),
                                  primary_key=True, nullable=False))
+
 
 class Place(BaseModel, Base):
     """Represents a Place for a MySQL database.

@@ -61,4 +61,4 @@ class Place(BaseModel, Base):
         for adding an Amenity.id to the attribute amenity_ids.
         """
         if isinstance(obj, Amenity):
-            self.amenity_ids.append(obj.id)
+            self.amenities.append(obj)

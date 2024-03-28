@@ -42,7 +42,7 @@ class Place(BaseModel, Base):
     )
     amenities = relationship("Amenity",
                              secondary='place_amenity', viewonly=False,
-                             backref="places")
+                             backref="place_amenities")
 
     @property
     def reviews(self):
@@ -61,4 +61,4 @@ class Place(BaseModel, Base):
         for adding an Amenity.id to the attribute amenity_ids.
         """
         if isinstance(obj, Amenity):
-            self.amenities.append(obj)
+            self.amenity_ids.append(obj.id)

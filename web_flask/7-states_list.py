@@ -18,8 +18,7 @@ def close(self):
 def states_list():
     """Number_template/<n> page"""
     states = storage.all(State)
-    sorted_states = sorted(states, key=lambda s: s.name)
-    return render_template('7-states_list.html', states=sorted_states)
+    return render_template('7-states_list.html', states=states)
 
 
 if __name__ == "__main__":

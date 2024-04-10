@@ -18,8 +18,7 @@ def close(self):
 def cities_by_states():
     """Display States"""
     states = storage.all(State)
-    sorted_states = sorted(states, key=lambda s: s.name)
-    return render_template('8-cities_by_states.html', states=sorted_states)
+    return render_template('8-cities_by_states.html', states=states)
 
 
 if __name__ == "__main__":
